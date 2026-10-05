@@ -1,5 +1,7 @@
 # GameHub Redis
 
+## Демонстрация:**https://drive.google.com/drive/folders/1DzfaBZcRNta6odQlAbgbpFZX-NSRhXfd?usp=share_link**
+
 ## Стек
 
 - Java 25
