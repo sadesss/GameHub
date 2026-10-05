@@ -1,0 +1,19 @@
+spring:
+  application:
+    name: gamehub
+
+server:
+  port: 8080
+
+app:
+  redis:
+    mode: ${REDIS_MODE:sentinel}
+    host: ${REDIS_HOST:localhost}
+    port: ${REDIS_PORT:6379}
+    sentinel:
+      master: ${REDIS_SENTINEL_MASTER:mymaster}
+      nodes: ${REDIS_SENTINEL_NODES:sentinel-1:26379,sentinel-2:26379,sentinel-3:26379}
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
