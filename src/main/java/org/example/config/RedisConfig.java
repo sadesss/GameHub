@@ -15,6 +15,9 @@ import org.springframework.data.redis.core.StringRedisTemplate;
 
 import java.time.Duration;
 
+/**
+ * Конфигурация подключения приложения к Redis.
+ */
 @Configuration
 public class RedisConfig {
 
@@ -33,6 +36,9 @@ public class RedisConfig {
     @Value("${app.redis.sentinel.nodes:sentinel-1:26379,sentinel-2:26379,sentinel-3:26379}")
     private String sentinelNodes;
 
+    /**
+     * Создаёт фабрику подключений к Redis.
+     */
     @Bean
     public RedisConnectionFactory redisConnectionFactory() {
         ClientOptions clientOptions = ClientOptions.builder()
@@ -48,34 +54,57 @@ public class RedisConfig {
                         .shutdownTimeout(Duration.ZERO)
                         .clientOptions(clientOptions);
 
+        // Локальный режим с одиночным Redis.
         if ("standalone".equalsIgnoreCase(mode)) {
             RedisStandaloneConfiguration standalone =
                     new RedisStandaloneConfiguration(host, port);
-            return new LettuceConnectionFactory(standalone, clientBuilder.build());
+
+            return new LettuceConnectionFactory(
+                    standalone,
+                    clientBuilder.build()
+            );
         }
 
-        RedisSentinelConfiguration sentinel = new RedisSentinelConfiguration();
+        // Основной режим работы через Redis Sentinel.
+        RedisSentinelConfiguration sentinel =
+                new RedisSentinelConfiguration();
+
         sentinel.master(sentinelMaster);
 
+        // Добавляем Sentinel-узлы из конфигурации приложения.
         for (String node : sentinelNodes.split(",")) {
             String trimmed = node.trim();
             int separator = trimmed.lastIndexOf(':');
+
             if (separator <= 0) {
-                throw new IllegalArgumentException("Invalid Sentinel node: " + trimmed);
+                throw new IllegalArgumentException(
+                        "Invalid Sentinel node: " + trimmed
+                );
             }
+
             String sentinelHost = trimmed.substring(0, separator);
-            int sentinelPort = Integer.parseInt(trimmed.substring(separator + 1));
+            int sentinelPort =
+                    Integer.parseInt(trimmed.substring(separator + 1));
+
             sentinel.sentinel(sentinelHost, sentinelPort);
         }
 
-        // Записи идут в master, чтения по возможности обслуживаются replica.
-        clientBuilder.readFrom(ReadFrom.REPLICA_PREFERRED);
+        // Операции выполняются через текущий master.
+        clientBuilder.readFrom(ReadFrom.MASTER);
 
-        return new LettuceConnectionFactory(sentinel, clientBuilder.build());
+        return new LettuceConnectionFactory(
+                sentinel,
+                clientBuilder.build()
+        );
     }
 
+    /**
+     * Создаёт шаблон для строковых операций с Redis.
+     */
     @Bean
-    public StringRedisTemplate stringRedisTemplate(RedisConnectionFactory connectionFactory) {
+    public StringRedisTemplate stringRedisTemplate(
+            RedisConnectionFactory connectionFactory) {
+
         return new StringRedisTemplate(connectionFactory);
     }
 }

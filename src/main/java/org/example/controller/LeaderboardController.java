@@ -8,6 +8,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * REST-контроллер для работы с таблицей лидеров.
+ */
 @RestController
 @RequestMapping("/api/leaderboard")
 public class LeaderboardController {
@@ -18,6 +21,9 @@ public class LeaderboardController {
         this.leaderboardService = leaderboardService;
     }
 
+    /**
+     * Добавляет очки игроку.
+     */
     @PostMapping("/score")
     public Map<String, Object> addScore(@RequestBody ScoreRequest request) {
         double score = leaderboardService.addScore(
@@ -31,12 +37,19 @@ public class LeaderboardController {
         );
     }
 
+    /**
+     * Возвращает список лидеров.
+     */
     @GetMapping("/top")
     public List<LeaderboardEntry> top(
             @RequestParam(defaultValue = "10") int limit) {
+
         return leaderboardService.getTop(limit);
     }
 
+    /**
+     * Возвращает позицию игрока в лидерборде.
+     */
     @GetMapping("/rank/{playerId}")
     public Map<String, Object> rank(@PathVariable String playerId) {
         return Map.of(
