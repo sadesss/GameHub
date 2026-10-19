@@ -1,5 +1,7 @@
 # Домашняя работа 2 — MongoDB
 
+Видеодемонстрация: https://drive.google.com/file/d/1rGLLljYz4C3N5sqDm1137yE3PFScNTK0/view?usp=share_link
+
 ## 1. Запуск проекта
 
 В работе используется MongoDB 8.0.30 и replica set из трёх узлов:
