@@ -1,0 +1,15 @@
+/Users/admin/Desktop/цу/GameHub/src/main/java/org/example/GameHubApplication.java
+/Users/admin/Desktop/цу/GameHub/src/main/java/org/example/config/RedisConfig.java
+/Users/admin/Desktop/цу/GameHub/src/main/java/org/example/config/RedisConnectionCheck.java
+/Users/admin/Desktop/цу/GameHub/src/main/java/org/example/controller/LeaderboardController.java
+/Users/admin/Desktop/цу/GameHub/src/main/java/org/example/controller/PlayerController.java
+/Users/admin/Desktop/цу/GameHub/src/main/java/org/example/model/AchievementRequest.java
+/Users/admin/Desktop/цу/GameHub/src/main/java/org/example/model/BatchPlayerRequest.java
+/Users/admin/Desktop/цу/GameHub/src/main/java/org/example/model/LeaderboardEntry.java
+/Users/admin/Desktop/цу/GameHub/src/main/java/org/example/model/LevelUpdateRequest.java
+/Users/admin/Desktop/цу/GameHub/src/main/java/org/example/model/Player.java
+/Users/admin/Desktop/цу/GameHub/src/main/java/org/example/model/ScoreRequest.java
+/Users/admin/Desktop/цу/GameHub/src/main/java/org/example/service/AchievementService.java
+/Users/admin/Desktop/цу/GameHub/src/main/java/org/example/service/LeaderboardService.java
+/Users/admin/Desktop/цу/GameHub/src/main/java/org/example/service/NotificationService.java
+/Users/admin/Desktop/цу/GameHub/src/main/java/org/example/service/PlayerService.java

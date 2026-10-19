@@ -1,0 +1,15 @@
+org/example/model/AchievementRequest.class
+org/example/model/ScoreRequest.class
+org/example/model/LevelUpdateRequest.class
+org/example/config/RedisConfig.class
+org/example/model/Player.class
+org/example/service/LeaderboardService.class
+org/example/service/AchievementService.class
+org/example/controller/LeaderboardController.class
+org/example/controller/PlayerController.class
+org/example/model/BatchPlayerRequest.class
+org/example/GameHubApplication.class
+org/example/service/NotificationService.class
+org/example/model/LeaderboardEntry.class
+org/example/service/PlayerService.class
+org/example/config/RedisConnectionCheck.class
