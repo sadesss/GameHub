@@ -1,5 +1,7 @@
 # Домашняя работа №3 — Apache Cassandra
 
+Видео: https://drive.google.com/file/d/1HGTWC2t0Mt_UcIbgePultaCJ4vN1DS05/view?usp=share_link
+
 ## 1. Цель работы и описание сервиса
 
 Цель работы — реализовать хранение и чтение журнала пользовательских действий в распределённой СУБД Apache Cassandra, исследовать уровни консистентности ONE и QUORUM, влияние сжатия LZ4, Bloom-фильтры, TTL, компакцию и синхронизацию реплик (`nodetool repair`).
